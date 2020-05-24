@@ -11,12 +11,13 @@ directories = {
 }
 
 
+
+    
     
 def docum_people():
     #people
     inp_doc_people = input('Введите номер документа: ')
     n = 0
-  
     for document in documents:
         if inp_doc_people == 'q':
             print('Выход выполнен')
@@ -27,6 +28,14 @@ def docum_people():
             n += 1
     if n == 0:
         print ('Введены не верные данные')
+        print(' ')
+    inp_doc_people = input('Запрос выполнен, Желаете повторить? Y - да, продолжить работу; N - нет, вернуться в меню ')
+    inp_doc_people = inp_doc_people.lower()
+    if inp_doc_people == 'y':
+        docum_people()
+    elif inp_doc_people == 'n':
+        telo()
+        
 
             
 def docum_shelf():
@@ -42,6 +51,12 @@ def docum_shelf():
              n += 1
     if n == 0:
          print('Введены не верные данные документа')
+    inp_doc_people = input('Запрос выполнен, Желаете повторить? Y - да, продолжить работу; N - нет, вернуться в меню ')
+    inp_doc_people = inp_doc_people.lower()
+    if inp_doc_people == 'y':
+        docum_shelf()
+    elif inp_doc_people == 'n':
+        telo()     
 
 
     
@@ -49,9 +64,16 @@ def docum_list():
     #list
     for document in documents:
         print (f'Список всех документов: {document.values()}')
+        print (' ')
+    inp_doc_people = input('Запрос выполнен, Желаете повторить? Y - да, продолжить работу; N - нет, вернуться в меню ')
+    inp_doc_people = inp_doc_people.lower()
+    if inp_doc_people == 'y':
+        docum_list()
+    elif inp_doc_people == 'n':
+        telo() 
 
         
-def docum_add_test():
+def docum_add():
     #add
     print('Вы добавляете новый документ!')
     type_input = input('Введите тип документа (passport, invoice и т.д.): ')
@@ -72,27 +94,38 @@ def docum_add_test():
             n += 1
     if n == 0:
         print ('Введены не верные данные полки')
-    
+    inp_doc_people = input('Запрос выполнен, Желаете продолжить? Y - да, продолжить работу; N - нет, вернуться в меню ')
+    inp_doc_people = inp_doc_people.lower()
+    if inp_doc_people == 'y':
+        docum_add()
+    elif inp_doc_people == 'n':
+        telo() 
 
 def telo():
-    print('p-(people)поиск человека по номеру документа','\n','s-(shelf)поиск документа на полке')
-    print('l-(list)-все документы')
-    print('a-(add)-добавление новых данных','\n','q-конец пути, покинь программу и иди домой')
-    zadacha = input ('Введите нужную команду: ')
-    zadacha = zadacha.lower()
+    print(' p-(people)поиск человека по номеру документа','\n','s-(shelf)поиск документа на полке')
+    print(' l-(list)-все документы')
+    print(' a-(add)-добавление новых данных','\n','q-конец пути, покинь программу и иди домой')
+
     while True:
-        if zadacha == 'p':
+        zadacha = input ('Введите нужную команду: ')
+        zadacha = zadacha.lower()
+        if zadacha == 'q':
+            break
+        elif zadacha == 'p':
             docum_people()
         elif  zadacha == 's':
             docum_shelf()
         elif zadacha == 'l':
             docum_list()
         elif  zadacha == 'a':
-            docum_add_test()
-        elif  zadacha == 'q':
-            break
+            docum_add()  
         else:
             print('Введены не верные данные. Требуется ввести 1 букву на литиннице')
-telo()
+    inp_doc_people = input('Завершение работы... Желаете продолжить выход? Y - да, завершить работу; N - нет, вернуться в меню ')
+    inp_doc_people = inp_doc_people.lower()
+    if inp_doc_people == 'n':
+        telo()
+    elif inp_doc_people == 'y':
+        raise SystemExit 
 
-       
+telo()       
