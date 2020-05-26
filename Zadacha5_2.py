@@ -107,7 +107,6 @@ def docum_add():
 def docum_dell():
     inp_doc_people = input('Введите номер удаляемого документа: ')
     n = 0
-    import re
     for document in documents:
         if inp_doc_people == document.get("number"):
             n += 1
@@ -127,12 +126,8 @@ def docum_dell():
                         #print (f'dire: {dire}')
                         if inp_doc_people in dire:
                             perem_all = len(dire)
-                            #perem_poz = re.search(inp_doc_people)
-                            #perem_poz = dire.search(inp_doc_people)
-                            perem_poz = re.dire(inp_doc_people)
                             print (f'dire: {perem_poz}')
                     n += 1
-            
             if n == 0:
                 print ('Данный документ отсутствует!')
     
